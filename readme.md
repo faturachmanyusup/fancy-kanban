@@ -20,7 +20,7 @@ _Request Body_
 {
   "name": "<posted name>"
   "email": "<posted email>",
-  "password": "<hashed posted password>"
+  "password": "<posted password>"
 }
 ```
 
@@ -70,7 +70,7 @@ _Response (200)_
 ```
 {
   "id": "<user id>",
-  "name": "<user hashed name>",
+  "name": "<user name>",
   "email": "<user email>",
   "access_token": "<user access_token>",
 }
@@ -121,7 +121,7 @@ _Response (200)_
     "id": "<task id>",
     "title": "<task title>",
     "category": "<task category>",
-    "UserId": "<id creator>",
+    "UserId": "<creator id>",
     "createdAt": "<date task created>",
     "updatedAt": "<date last time task updated>"
   },
