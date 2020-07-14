@@ -1,9 +1,8 @@
-# Kanban
 # Kanban Server
 
 
 ## Kanban Server endpoints
-
+---
 
 ## User endpoints
 ---
