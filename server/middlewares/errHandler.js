@@ -1,7 +1,7 @@
 module.exports = (err, _, res, __) => {
   let message = 'internal server error';
   let errCode = 500;
-  console.log(err.name);
+  console.log(err);
   switch (err.name) {
     case 'bad request':
       errCode = 400;

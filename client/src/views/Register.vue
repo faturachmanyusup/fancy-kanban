@@ -1,0 +1,90 @@
+<template>
+  <div>
+      <h1 class="text-center mt-5">Kanban App</h1>
+      <div class="form">
+        <form @submit.prevent="register()">
+          <h2 class="text-center">Create Account</h2>
+          <div class="form-group mt-4">
+            <label>Name</label>
+            <input type="text" class="form-control" v-model="registerName">
+          </div>
+          <div class="form-group mt-4">
+            <label>Email address</label>
+            <input type="email" class="form-control" v-model="registerEmail">
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" v-model="registerPassword">
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">register</button>
+          </div>
+          <div class="text-center mt-5">
+            <p>Already have an account?</p>
+            <a href="" role="button" @click.prevent="toLogin()">Log in</a>
+          </div>
+        </form>
+      </div>
+    </div>
+</template>
+
+<script>
+
+import axios from 'axios';
+import qs from 'qs';
+
+export default {
+  data() {
+    return {
+      registerName: '',
+      registerEmail: '',
+      registerPassword: ''
+    }
+  },
+  methods: {
+    toLogin() {
+      this.$emit('emitToLogin');
+    },
+    register() {
+      // this.page = 'dashboard';
+      console.log(this.registerEmail);
+      console.log(this.registerPassword);
+      const data = qs.stringify({
+        name: this.registerName,
+        email: this.registerEmail,
+        password: this.registerPassword,
+      });
+      axios({
+        method: 'POST',
+        url: 'http://localhost:3000/register',
+        data: data
+      })
+      .then(function (res) {
+        console.log(res);
+      })
+      .catch(function (err) {
+        console.log(err);
+      })
+    }
+  }
+}
+</script>
+
+<style scoped>
+  .form {
+    width: 340px;
+    margin: 50px auto;
+    font-size: 15px;
+  }
+
+  .form form {
+    margin-bottom: 15px;
+    background: #f7f7f7;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+  }
+
+  .g-signin2 > div {
+    margin: 0 auto;
+  }
+</style>
