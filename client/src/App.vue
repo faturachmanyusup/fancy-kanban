@@ -1,7 +1,7 @@
 <template>
   <div>
-    <Navbar :page='page' @emitLogout='logout'></Navbar>
-    <Login v-if="page === 'login'" @emitRegister='showRegister' @emitAccesToken='loggedIn'></Login>
+    <Navbar :page='page' :user='user' @emitLogout='logout'></Navbar>
+    <Login v-if="page === 'login'" @emitRegister='showRegister' @emitLogin='loggedIn'></Login>
     <Register v-if="page === 'register'" @emitToLogin='showLogin'></Register>
     <Dashboard  v-if="page === 'dashboard'"></Dashboard>
   </div>
@@ -25,7 +25,7 @@ export default {
     return {
       message: 'Hello world',
       page: 'login',
-      access_token: '',
+      user: localStorage.user
     };
   },
   created() {
@@ -43,11 +43,10 @@ export default {
       this.page = 'login';
     },
     logout() {
-      localStorage.clear();
       this.page = 'login';
     },
     loggedIn(access_token) {
-      localStorage.access_token = access_token;
+      this.user = localStorage.user;
       this.page = 'dashboard';
     }
   }

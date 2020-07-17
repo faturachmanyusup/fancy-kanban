@@ -1,16 +1,13 @@
-.form[data-v-d8c276] {
+.login-form[data-v-d8c276] {
   width: 340px;
   margin: 50px auto;
   font-size: 15px;
 }
-.form form[data-v-d8c276] {
+.login-form form[data-v-d8c276] {
   margin-bottom: 15px;
   background: #f7f7f7;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   padding: 30px;
-}
-.g-signin2 > div[data-v-d8c276] {
-  margin: 0 auto;
 }
 .form[data-v-5a463f] {
   width: 340px;

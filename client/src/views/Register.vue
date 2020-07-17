@@ -31,7 +31,6 @@
 <script>
 
 import axios from 'axios';
-import qs from 'qs';
 
 export default {
   data() {
@@ -47,17 +46,14 @@ export default {
     },
     register() {
       // this.page = 'dashboard';
-      console.log(this.registerEmail);
-      console.log(this.registerPassword);
-      const data = qs.stringify({
-        name: this.registerName,
-        email: this.registerEmail,
-        password: this.registerPassword,
-      });
       axios({
         method: 'POST',
         url: 'http://localhost:3000/register',
-        data: data
+        data: {
+        name: this.registerName,
+        email: this.registerEmail,
+        password: this.registerPassword,
+      }
       })
       .then(function (res) {
         console.log(res);

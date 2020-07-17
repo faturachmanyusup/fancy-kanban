@@ -1,7 +1,7 @@
 <template>
   <div>
       <h1 class="text-center mt-5">Kanban App</h1>
-      <div class="form">
+      <div class="login-form">
         <form @submit.prevent="login()">
           <h2 class="text-center">Log in</h2>
           <div class="form-group mt-4">
@@ -15,8 +15,10 @@
           <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block">login</button>
           </div>
-          <div class="text-center mt-5">
-            <p>Not register yet ?</p>
+          <h5 class="text-center">or</h5>
+          <GoogleLogin :params="params" :renderParams="renderParams" :onSuccess="onSuccess"></GoogleLogin>
+          <div class="text-center mt-4">
+            <p>Don't have an account ?</p>
             <a href="" role="button" @click.prevent="toRegister()">Register</a>
           </div>
         </form>
@@ -27,13 +29,24 @@
 <script>
 
 import axios from 'axios';
-import qs from 'qs';
+import GoogleLogin from 'vue-google-login';
 
 export default {
+  components: {
+    GoogleLogin
+  },
   data() {
     return {
       loginEmail: '',
       loginPassword: '',
+      params: {
+          client_id: "44853804618-n6kh1m7uvukvjf144aqujtsj6g84sr6o.apps.googleusercontent.com"
+      },
+      renderParams: {
+        width: 280,
+        height: 38,
+        longtitle: true
+      }
     }
   },
   methods: {
@@ -41,45 +54,56 @@ export default {
       this.$emit('emitRegister');
     },
     login() {
-      // this.page = 'dashboard';
-      console.log(this.loginEmail);
-      console.log(this.loginPassword);
-      const data = qs.stringify({
-        email: this.loginEmail,
-        password: this.loginPassword,
-      });
       axios({
         method: 'POST',
         url: 'http://localhost:3000/login',
-        data: data
+        data: {
+        email: this.loginEmail,
+        password: this.loginPassword,
+      }
       })
       .then(res =>  {
-        // console.log(res.data);
-        this.$emit('emitAccesToken', res.data.access_token);
+        localStorage.access_token = res.data.access_token;
+        localStorage.user = res.data.name;
+        this.$emit('emitLogin');
       })
       .catch(function (err) {
         console.log(err);
       })
-    }
+    },
+    onSuccess(googleUser) {
+      axios({
+        method: 'POST',
+        url: 'http://localhost:3000/login/google',
+        headers: {
+          googletoken: googleUser.wc.id_token
+        }
+      })
+      .then(res =>  {
+        this.loginEmail = res.data.email;
+        this.loginPassword = 'google';
+        this.login();
+      })
+      .catch(function (err) {
+        console.log(err);
+      })
+      
+    },
   }
 }
 </script>
 
 <style scoped>
-  .form {
+  .login-form {
     width: 340px;
     margin: 50px auto;
     font-size: 15px;
   }
 
-  .form form {
+  .login-form form {
     margin-bottom: 15px;
     background: #f7f7f7;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     padding: 30px;
-  }
-
-  .g-signin2 > div {
-    margin: 0 auto;
   }
 </style>
