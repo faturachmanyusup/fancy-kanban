@@ -30,12 +30,13 @@ module.exports = {
   },
   async authorization(req, _, next) {
     try {
-      req.task = await Task.findOne({where: {id: req.body.id}});
+      console.log(req.body);
+      req.task = await Task.findOne({where: {id: req.params.id}});
       if (!req.task) {
         throw {
           name: 'not found',
           statusCode: 404,
-          message: `task with id ${req.body.id} not found`
+          message: `task with id ${req.params.id} not found`
         }
       } else {
         if (req.task.UserId === req.userData.id) {

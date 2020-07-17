@@ -4,11 +4,11 @@ const { authentication, authorization } = require('../middlewares/auth');
 
 
 router.use(authentication);
-router.get('/find', authorization, TaskController.findOne);
+router.get('/:id', authorization, TaskController.findOne);
 router.get('/', TaskController.findAll);
 router.post('/', TaskController.add);
-router.patch('/', authorization, TaskController.update);
-router.delete('/', authorization, TaskController.delete);
+router.patch('/:id', authorization, TaskController.update);
+router.delete('/:id', authorization, TaskController.delete);
 
 
 module.exports = router;

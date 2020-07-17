@@ -48,7 +48,7 @@ export default {
       // this.page = 'dashboard';
       axios({
         method: 'POST',
-        url: 'http://localhost:3000/register',
+        url: 'https://kanban-ap.herokuapp.com/register',
         data: {
         name: this.registerName,
         email: this.registerEmail,

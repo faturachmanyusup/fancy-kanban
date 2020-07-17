@@ -10721,7 +10721,7 @@ var _default = {
 
       (0, _axios.default)({
         method: 'POST',
-        url: 'http://localhost:3000/login',
+        url: 'https://kanban-ap.herokuapp.com/login',
         data: {
           email: this.loginEmail,
           password: this.loginPassword
@@ -10740,7 +10740,7 @@ var _default = {
 
       (0, _axios.default)({
         method: 'POST',
-        url: 'http://localhost:3000/login/google',
+        url: 'https://kanban-ap.herokuapp.com/login/google',
         headers: {
           googletoken: googleUser.wc.id_token
         }
@@ -10976,7 +10976,7 @@ var _default = {
       // this.page = 'dashboard';
       (0, _axios.default)({
         method: 'POST',
-        url: 'http://localhost:3000/register',
+        url: 'https://kanban-ap.herokuapp.com/register',
         data: {
           name: this.registerName,
           email: this.registerEmail,
@@ -11221,7 +11221,7 @@ var _default = {
         if (deleted) {
           return (0, _axios.default)({
             method: 'DELETE',
-            url: "http://localhost:3000/tasks/".concat(_this.task.id),
+            url: "https://kanban-ap.herokuapp.com/tasks/".concat(_this.task.id),
             headers: {
               access_token: localStorage.access_token
             }
@@ -11493,7 +11493,7 @@ var _default = {
 
       (0, _axios.default)({
         method: 'POST',
-        url: 'http://localhost:3000/tasks',
+        url: 'https://kanban-ap.herokuapp.com/tasks',
         headers: {
           access_token: localStorage.access_token
         },
@@ -11710,7 +11710,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-//
 var _default = {
   data: function data() {
     return {
@@ -11760,7 +11759,7 @@ var _default = {
 
       (0, _axios.default)({
         method: 'PATCH',
-        url: "http://localhost:3000/tasks/".concat(this.task.id),
+        url: "https://kanban-ap.herokuapp.com/tasks/".concat(this.task.id),
         headers: {
           access_token: localStorage.access_token
         },
@@ -11960,7 +11959,7 @@ var _default = {
 
       (0, _axios.default)({
         method: 'GET',
-        url: 'http://localhost:3000/tasks',
+        url: 'https://kanban-ap.herokuapp.com/tasks',
         headers: {
           access_token: localStorage.access_token
         }
@@ -61586,7 +61585,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "36255" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42559" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

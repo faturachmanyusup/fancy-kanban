@@ -7,7 +7,6 @@
         </b-form-group>
         <b-form-group label="Category">
           <b-form-select v-model="category" :options="categories"></b-form-select>
-          <!-- <b-form-input v-model="category" required></b-form-input> -->
         </b-form-group>
       </form>
     </b-modal>
@@ -59,7 +58,7 @@
       editTask(task) {
         axios({
           method: 'PATCH',
-          url: `http://localhost:3000/tasks/${this.task.id}`,
+          url: `https://kanban-ap.herokuapp.com/tasks/${this.task.id}`,
           headers: {
             access_token: localStorage.access_token
           },
