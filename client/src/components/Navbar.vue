@@ -12,8 +12,7 @@ export default {
   methods: {
     logout() {
       localStorage.clear();
-      const auth2 = gapi.auth2.getAuthInstance();
-      auth2.signOut()
+      sessionStorage.clear();
       this.$emit('emitLogout');
     }
   },

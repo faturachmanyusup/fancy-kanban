@@ -5,19 +5,19 @@
         <h6 class="font-weight-bold pt-1">{{ category }}</h6>
       </div>
 
-      <div v-if="category === 'Backlog' && backlog.length > 0">
+      <div v-if="category === 'Backlog' && backlog.length > 0" class="scroll">
         <Card v-for="task in backlog" :key="task.id" :task='task' @emitDropTask="dropTask" @emitShowUpdate="showUpdate"></Card>  
       </div>
 
-      <div v-else-if="category === 'Product' && product.length > 0">
+      <div v-else-if="category === 'Product' && product.length > 0" class="scroll">
         <Card v-for="task in product" :key="task.id" :task='task' @emitDropTask="dropTask" @emitShowUpdate="showUpdate"></Card>
       </div>
 
-      <div v-else-if="category === 'Development' && development.length > 0">
+      <div v-else-if="category === 'Development' && development.length > 0" class="scroll">
         <Card v-for="task in development" :key="task.id" :task='task' @emitDropTask="dropTask" @emitShowUpdate="showUpdate"></Card>  
       </div>
 
-      <div v-else-if="category === 'Done' && done.length > 0">
+      <div v-else-if="category === 'Done' && done.length > 0" class="scroll">
         <Card v-for="task in done" :key="task.id" :task='task' @emitDropTask="dropTask" @emitShowUpdate="showUpdate"></Card>  
       </div>
 
@@ -100,6 +100,9 @@ export default {
       })
       .catch(err => {
         console.log(err);
+        swal(err.message, {
+          icon: "warning",
+        });
       })
     },
     showUpdate(task) {
@@ -109,3 +112,10 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+  .scroll {
+    max-height: 500px;
+    overflow: auto;
+  }
+</style>

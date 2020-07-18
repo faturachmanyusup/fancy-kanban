@@ -1,8 +1,16 @@
 <template>
   <div class="container-fluid" style="max-width: 90%;">
     <div class="d-flex justify-content-between mt-4">
-      <Board v-for="(category, i) in categories" :key="i" :category="category" :tasks="tasks" @emitDropTask="dropTask" @emitAddTask="addTask" @emitShowUpdate="showUpdateTask"></Board>
-      <Modal v-if="isShowUpdate" :task='task' @disableShowEdit="disableShowEdit" @emitRefetch="fetchTask"></Modal>
+      <Board
+        v-for="(category, i) in categories"
+        :key="i"
+        :category="category"
+        :tasks="tasks"
+        @emitDropTask="dropTask"
+        @emitAddTask="fetchTask"
+        @emitShowUpdate="showUpdateTask">
+      </Board>
+      <Modal v-if="isShowUpdate" :task='task' @disableShowEdit="disableShowEdit" @updateTask="updateTask"></Modal>
     </div>
   </div>
 </template>
@@ -41,17 +49,16 @@ export default {
       })
       .then(tasks => {
         this.tasks = tasks.data;
-        
       })
       .catch(err => {
         console.log(err);
+        swal(err.message, {
+          icon: "warning",
+        });
       })
     },
     dropTask(value) {
       this.tasks = this.tasks.filter(element => element.id !== value.id);
-    },
-    addTask() {
-      this.fetchTask();
     },
     showUpdateTask(task) {
       this.task = task;
@@ -59,6 +66,10 @@ export default {
     },
     disableShowEdit() {
       this.isShowUpdate = false;
+    },
+    updateTask() {
+      console.log('im in Dashboard');
+      this.fetchTask();
     }
   }
 }

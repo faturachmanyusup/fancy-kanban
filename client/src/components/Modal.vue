@@ -1,7 +1,21 @@
 <template>
   <div>
-    <b-modal no-stacking hide-backdrop content-class="shadow" id="modal-edit" ref="modal" title="Edit Task" @ok="editTask()" @show="getTask()" @hidden="disableModal()">
-      <form ref="form" @submit.prevent="editTask()">
+
+    <b-modal
+      no-close-on-backdrop
+      no-stacking
+      hide-backdrop
+      content-class="shadow"
+      id="modal-edit"
+      ref="modal"
+      title="Edit Task"
+      @ok="editTask()"
+      @show="getTask()"
+      @cancel="disableModal()"
+      @esc="disableModal()"
+      @close="disableModal()"
+    >
+      <form ref="form" @submit.stop.prevent="editTask()">
         <b-form-group invalid-feedback="text is required" label="Name">
           <b-form-input v-model="title" required></b-form-input>
         </b-form-group>
@@ -17,6 +31,7 @@
 <script>
 
   import axios from 'axios';
+  import swal from 'sweetalert';
 
   export default {
     data() {
@@ -38,11 +53,9 @@
         this.$emit('disableShowEdit');
       },
       getTask(task) {
-        console.log("this.title", this.title);
-        console.log("this.task.title", this.task.title);
         axios({
           method: 'GET',
-          url: `http://localhost:3000/tasks/${this.task.id}`,
+          url: `https://kanban-ap.herokuapp.com/tasks/${this.task.id}`,
           headers: {
             access_token: localStorage.access_token
           },
@@ -53,9 +66,12 @@
         })
         .catch(err => {
           console.log(err);
+          swal(err.message, {
+            icon: "warning",
+          });
         })
       },
-      editTask(task) {
+      editTask() {
         axios({
           method: 'PATCH',
           url: `https://kanban-ap.herokuapp.com/tasks/${this.task.id}`,
@@ -69,13 +85,20 @@
           }
         })
         .then(res => {
+          this.$emit('updateTask');
+          this.disableModal();
+          console.log('im in Modal');
+        })
+        .then(() => {
           swal("Task has been edited!", {
             icon: "success",
           });
-          this.$emit('emitRefetch');
         })
         .catch(err => {
           console.log(err);
+          swal(err.message, {
+            icon: "warning",
+          });
         })
       }
     }

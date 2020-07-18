@@ -45,21 +45,24 @@ export default {
       this.$emit('emitToLogin');
     },
     register() {
-      // this.page = 'dashboard';
       axios({
         method: 'POST',
         url: 'https://kanban-ap.herokuapp.com/register',
         data: {
-        name: this.registerName,
-        email: this.registerEmail,
-        password: this.registerPassword,
-      }
+          name: this.registerName,
+          email: this.registerEmail,
+          password: this.registerPassword,
+        }
       })
-      .then(function (res) {
+      .then(res => {
         console.log(res);
+        this.toLogin();
       })
-      .catch(function (err) {
+      .catch(err => {
         console.log(err);
+        swal(err.message, {
+          icon: "warning",
+        });
       })
     }
   }
@@ -78,9 +81,5 @@ export default {
     background: #f7f7f7;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     padding: 30px;
-  }
-
-  .g-signin2 > div {
-    margin: 0 auto;
   }
 </style>

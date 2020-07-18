@@ -67,8 +67,11 @@ export default {
         localStorage.user = res.data.name;
         this.$emit('emitLogin');
       })
-      .catch(function (err) {
+      .catch(err => {
         console.log(err);
+        swal(err.message, {
+          icon: "warning",
+        });
       })
     },
     onSuccess(googleUser) {
@@ -84,8 +87,11 @@ export default {
         this.loginPassword = 'google';
         this.login();
       })
-      .catch(function (err) {
+      .catch(err => {
         console.log(err);
+        swal(err.message, {
+          icon: "warning",
+        });
       })
       
     },

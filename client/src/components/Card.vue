@@ -55,6 +55,9 @@ export default {
       })
       .catch(err => {
         console.log(err);
+        swal(err.message, {
+          icon: "warning",
+        });
       })
     },
     showEdit() {
