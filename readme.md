@@ -188,7 +188,7 @@ _Response (500 - Internal Server Error)_
 ```
 
 ---
-### GET /tasks/find : find task by id
+### GET /tasks/:id : find task by id
 
 _Request Header_
 ```
@@ -199,9 +199,7 @@ _Request Header_
 
 _Request Body_
 ```
-{
-  "id": "<task id>"
-}
+not needed
 ```
 
 _Response (200)_
@@ -237,7 +235,7 @@ _Response (500 - Internal Server Error)_
 }
 ```
 
-### PATCH /tasks : edit task
+### PATCH /tasks/:id : edit task
 
 _Request Header_
 ```
@@ -295,7 +293,7 @@ _Response (500 - Internal Server Error)_
 ```
 
 ---
-### DELETE /tasks : delete task
+### DELETE /tasks/:id : delete task
 
 _Request Header_
 ```
@@ -306,9 +304,7 @@ _Request Header_
 
 _Request Body_
 ```
-{
-  "id": "<task id>"
-}
+not needed
 ```
 
 _Response (200)_
@@ -333,7 +329,7 @@ _Response (401 - Unauthorized)_
 _Response (404 - Not Found)_
 ```
 {
-  "message": "<message task not found>"
+  "message": "<task not found message>"
 }
 ```
 
