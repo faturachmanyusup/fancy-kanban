@@ -281,7 +281,7 @@ _Response (401 - Unauthorized)_
 _Response (404 - Not Found)_
 ```
 {
-  "message": "<message task not found>"
+  "message": "<task not found message>"
 }
 ```
 
