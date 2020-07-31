@@ -38,7 +38,7 @@ export default {
         if (deleted) {
           return axios({
             method: 'DELETE',
-            url: `https://kanban-ap.herokuapp.com/tasks/${this.task.id}`,
+            url: `http://localhost:3000/tasks/${this.task.id}`,
             headers: {
               access_token: localStorage.access_token
             },

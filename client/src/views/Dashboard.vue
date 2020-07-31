@@ -42,7 +42,7 @@ export default {
     fetchTask() {
       axios({
         method: 'GET',
-        url: 'https://kanban-ap.herokuapp.com/tasks',
+        url: 'http://localhost:3000/tasks',
         headers: {
           access_token: localStorage.access_token
         }
@@ -68,7 +68,6 @@ export default {
       this.isShowUpdate = false;
     },
     updateTask() {
-      console.log('im in Dashboard');
       this.fetchTask();
     }
   }

@@ -56,7 +56,7 @@ export default {
     login() {
       axios({
         method: 'POST',
-        url: 'https://kanban-ap.herokuapp.com/login',
+        url: 'http://localhost:3000/login',
         data: {
         email: this.loginEmail,
         password: this.loginPassword,
@@ -77,7 +77,7 @@ export default {
     onSuccess(googleUser) {
       axios({
         method: 'POST',
-        url: 'https://kanban-ap.herokuapp.com/login/google',
+        url: 'http://localhost:3000/login/google',
         headers: {
           googletoken: googleUser.wc.id_token
         }

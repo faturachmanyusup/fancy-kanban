@@ -73,7 +73,7 @@ class UserController {
         //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
       });
       const payload = ticket.getPayload();
-
+      
       const user = await User.findOne({where: {email: payload.email}});
       if (user) {
         const access_token = encode({
@@ -94,11 +94,12 @@ class UserController {
           password: 'google'
         })
         const access_token = encode({
-          id: user.id,
-          name: user.name,
-          email: user.email,
-          organization: user.organization
+          id: newUser.id,
+          name: newUser.name,
+          email: newUser.email,
+          organization: newUser.organization
         }, process.env.SECRET);
+        console.log(newUser,'<<<im here');
         return res.status(201).json({
           id: newUser.id,
           email: newUser.email,
@@ -106,6 +107,7 @@ class UserController {
         });
       }
     } catch (e) {
+      console.log(e);
       next(e);
     }
   }

@@ -55,7 +55,7 @@
       getTask(task) {
         axios({
           method: 'GET',
-          url: `https://kanban-ap.herokuapp.com/tasks/${this.task.id}`,
+          url: `http://localhost:3000/tasks/${this.task.id}`,
           headers: {
             access_token: localStorage.access_token
           },
@@ -74,7 +74,7 @@
       editTask() {
         axios({
           method: 'PATCH',
-          url: `https://kanban-ap.herokuapp.com/tasks/${this.task.id}`,
+          url: `http://localhost:3000/tasks/${this.task.id}`,
           headers: {
             access_token: localStorage.access_token
           },
@@ -87,7 +87,6 @@
         .then(res => {
           this.$emit('updateTask');
           this.disableModal();
-          console.log('im in Modal');
         })
         .then(() => {
           swal("Task has been edited!", {
