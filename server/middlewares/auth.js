@@ -30,7 +30,6 @@ module.exports = {
   },
   async authorization(req, _, next) {
     try {
-      console.log(req.body);
       req.task = await Task.findOne({where: {id: req.params.id}});
       if (!req.task) {
         throw {

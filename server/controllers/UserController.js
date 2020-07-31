@@ -99,7 +99,6 @@ class UserController {
           email: newUser.email,
           organization: newUser.organization
         }, process.env.SECRET);
-        console.log(newUser,'<<<im here');
         return res.status(201).json({
           id: newUser.id,
           email: newUser.email,

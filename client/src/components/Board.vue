@@ -106,7 +106,6 @@ export default {
       })
     },
     showUpdate(task) {
-      console.log(task);
       this.$emit('emitShowUpdate', task);
     }
   }
