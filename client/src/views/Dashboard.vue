@@ -42,7 +42,7 @@ export default {
     fetchTask() {
       axios({
         method: 'GET',
-        url: 'http://localhost:3000/tasks',
+        url: 'https://kanban-ap.herokuapp.com/tasks',
         headers: {
           access_token: localStorage.access_token
         }
